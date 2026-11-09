@@ -100,6 +100,7 @@ function createHarness(saved = {}) {
 const harness = createHarness();
 const { elements, savedState, click, view, fire } = harness;
 assert.equal(questions.length, 205);
+assert.ok(questions.every((question) => question.stem.includes("（　）")), "Every question should preserve its blank parentheses");
 assert.ok(questions.every((question) => question.explanation.length >= 40));
 assert.ok(elements.mainContent.innerHTML.includes("205 QUESTIONS"), "Dashboard should render");
 assert.equal(savedState().session, null);

@@ -19,8 +19,11 @@ def clean_text(text):
 def extract_answer(text):
     matches = ANSWER_RE.findall(text)
     answer = matches[-1] if matches else ""
-    text = ANSWER_RE.sub("", text)
+    text_without_answers = ANSWER_RE.sub("", text)
+    has_existing_blank = bool(re.search(r"[（(]\s*[）)]", text_without_answers))
+    text = ANSWER_RE.sub(lambda _: "" if has_existing_blank else "（　）", text)
     text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"[（(]\s*[）)]", "（　）", text)
     return clean_text(text), answer
 
 
