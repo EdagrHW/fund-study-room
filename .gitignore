@@ -1,0 +1,9 @@
+# Original exam material is kept locally and never published.
+*.docx
+source_questions.txt
+
+# Local build and test artifacts.
+__pycache__/
+*.pyc
+_site/
+.DS_Store
